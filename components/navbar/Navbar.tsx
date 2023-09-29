@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import Theme from './Theme'
+import Sidebar from './Sidebar'
 
 const Navbar = () => {
   return (
@@ -36,6 +37,8 @@ const Navbar = () => {
             }}
           />
         </SignedIn>
+
+        <Sidebar />
       </div>
     </nav>
   )
