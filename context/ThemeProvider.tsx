@@ -19,16 +19,10 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
       setMode('dark')
+      document.documentElement.classList.add('dark')
     } else {
       setMode('light')
-    }
-  }, [])
-
-  useEffect(() => {
-    if (mode === 'dark') {
-      document.documentElement.classList.add('light')
-    } else {
-      document.documentElement.classList.add('dark')
+      document.documentElement.classList.remove('dark')
     }
   }, [mode])
 
