@@ -55,7 +55,7 @@ export default function RootLayout ({
           }}
         >
           <ThemeProvider>{children}</ThemeProvider>
-   u    </ClerkProvider>
+        </ClerkProvider>
       </body>
     </html>
   )
