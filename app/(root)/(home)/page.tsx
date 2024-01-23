@@ -1,7 +1,7 @@
 export default function Home () {
   return (
     <div>
-      hello&apos;ve
+      {/* hello&apos;ve */}
     </div>
   )
 }

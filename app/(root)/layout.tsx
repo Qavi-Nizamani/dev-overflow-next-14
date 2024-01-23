@@ -1,5 +1,5 @@
 import Navbar from '@/components/navbar/Navbar'
-import Sidebar from '@/components/navbar/Sidebar'
+import LeftSidebar from '@/components/shared/LeftSidebar'
 import React from 'react'
 
 const layout = ({ children }: { children: React.ReactNode }) => {
@@ -7,11 +7,11 @@ const layout = ({ children }: { children: React.ReactNode }) => {
     <main className="background-light850_dark100 relative">
       <Navbar />
       <div className="flex">
-        <Sidebar/>
+        <LeftSidebar />
         <section className="flex min-h-screen flex-1 flex-col px-6 pb-6 pt-36 max-md:pb-14 sm:px-14">
           {children}
         </section>
-        right sidebar
+        {/* right sidebar */}
       </div>
     </main>
   )
