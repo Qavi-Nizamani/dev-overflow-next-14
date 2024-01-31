@@ -7,19 +7,24 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
+
 type Props = {
   filters: { value: string; name: string }[]
+  containerClasses: string
+  otherClasses?: string
 }
 
-const Filter = ({ filters }: Props) => {
+const Filter = ({ filters, containerClasses, otherClasses }: Props) => {
   return (
-    <>
+    <div className={`relative ${containerClasses}`}>
       <Select>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger
+          className={`body-regular light-border background-light800_dark300 text-dark500_light700 border px-5 py-2.5 ${otherClasses}`}
+        >
           <SelectValue placeholder={'Select a Filter'} />
         </SelectTrigger>
         <SelectContent>
-          <SelectGroup >
+          <SelectGroup>
             {filters.map((item) => {
               return (
                 <SelectItem
@@ -34,7 +39,7 @@ const Filter = ({ filters }: Props) => {
           </SelectGroup>
         </SelectContent>
       </Select>
-    </>
+    </div>
   )
 }
 

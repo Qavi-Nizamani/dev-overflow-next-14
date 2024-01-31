@@ -58,42 +58,42 @@ const TopContent = () => {
 const BottomContent = () => {
   const popularTags = [
     {
-      _id: 1,
+      _id: '1',
       name: 'JavaScript',
       totalQuestions: 20152
     },
     {
-      _id: 2,
+      _id: '2',
       name: 'Next.js',
       totalQuestions: 18493
     },
     {
-      _id: 3,
+      _id: '3',
       name: 'React.js',
       totalQuestions: 16269
     },
     {
-      _id: 4,
+      _id: '4',
       name: 'Node.js',
       totalQuestions: 15121
     },
     {
-      _id: 5,
+      _id: '5',
       name: 'Python',
       totalQuestions: 14431
     },
     {
-      _id: 6,
+      _id: '6',
       name: 'Microsoft Azure',
       totalQuestions: 9429
     },
     {
-      _id: 7,
+      _id: '7',
       name: 'PostgreSql',
       totalQuestions: 9429
     },
     {
-      _id: 8,
+      _id: '8',
       name: 'Machine Learning',
       totalQuestions: 9429
     }

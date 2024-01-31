@@ -1,12 +1,14 @@
-import Filter from '@/components/shared/filter/Filter'
+import HomeFilter from '@/components/screens/home/HomeFilter'
+import Filter from '@/components/shared/Filter'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar'
 import { Button } from '@/components/ui/button'
+import { HomePageFilters } from '@/constants/filters'
 import Link from 'next/link'
 
 export default function Home () {
   return (
     <>
-      <div className="flex w-full  flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
+      <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
         <h1 className="h1-bold text-dark100_light900">All Questions</h1>
 
         <Link href={'/ask-question'} className="flex justify-end">
@@ -22,17 +24,17 @@ export default function Home () {
           imgSrc="/assets/icons/search.svg"
           iconPosition="left"
           placeholder="Search for questions"
+          otherClasses="flex-1"
         />
 
         <Filter
-          filters={[
-            { value: '1', name: 'Newest' },
-            { value: '2', name: 'Recommended' },
-            { value: '3', name: 'Frequent' },
-            { value: '4', name: 'Unanswered' }
-          ]}
+          filters={HomePageFilters}
+          otherClasses="min-h-[56px] sm:min-w-[170px]"
+          containerClasses="hidden max-md:flex"
         />
       </div>
+
+      <HomeFilter filters={HomePageFilters} />
     </>
   )
 }
