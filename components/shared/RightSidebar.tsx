@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import RenderTag from './RenderTag'
 
 const TopContent = () => {
   const hotQuestions = [
     {
       _id: 1,
-      title:
-        'Would it be appropriate to point out an error in another paper during a referee report?'
+      title: 'Would it be appropriate to point out an error in another paper during a referee report?'
     },
     {
       _id: 2,
@@ -54,47 +54,48 @@ const TopContent = () => {
     </div>
   )
 }
+
 const BottomContent = () => {
   const popularTags = [
     {
       _id: 1,
-      title: 'JavaScript',
-      count: 20152
+      name: 'JavaScript',
+      totalQuestions: 20152
     },
     {
       _id: 2,
-      title: 'Next.js',
-      count: 18493
+      name: 'Next.js',
+      totalQuestions: 18493
     },
     {
       _id: 3,
-      title: 'React.js',
-      count: 16269
+      name: 'React.js',
+      totalQuestions: 16269
     },
     {
       _id: 4,
-      title: 'Node.js',
-      count: 15121
+      name: 'Node.js',
+      totalQuestions: 15121
     },
     {
       _id: 5,
-      title: 'Python',
-      count: 14431
+      name: 'Python',
+      totalQuestions: 14431
     },
     {
       _id: 6,
-      title: 'Microsoft Azure',
-      count: 9429
+      name: 'Microsoft Azure',
+      totalQuestions: 9429
     },
     {
       _id: 7,
-      title: 'PostgreSql',
-      count: 9429
+      name: 'PostgreSql',
+      totalQuestions: 9429
     },
     {
       _id: 8,
-      title: 'Machine Learning',
-      count: 9429
+      name: 'Machine Learning',
+      totalQuestions: 9429
     }
   ]
   return (
@@ -103,20 +104,20 @@ const BottomContent = () => {
       <div className="grid gap-5">
         {popularTags.map((tag) => {
           return (
-            <Link
+            <RenderTag
               key={tag._id}
-              href={'/'}
-              className="flex items-center justify-between gap-6"
-            >
-              <p className="background-light900_dark300 text-light400_light500 body-medium rounded-md px-4 py-2">{tag.title}</p>
-              <p className="body-medium text-dark500_light700">{`${tag.count}+`}</p>
-            </Link>
+              _id={tag._id}
+              name={tag.name}
+              totalQuestions={tag.totalQuestions}
+              showCount
+            />
           )
         })}
       </div>
     </div>
   )
 }
+
 const RightSidebar = () => {
   return (
     <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col gap-16 overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-xl:hidden xl:w-[330px]">
