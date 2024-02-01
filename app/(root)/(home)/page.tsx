@@ -1,22 +1,45 @@
 import HomeFilter from '@/components/screens/home/HomeFilter'
+import HomeTopBar from '@/components/screens/home/HomeTopBar'
 import Filter from '@/components/shared/Filter'
+import PostCard from '@/components/shared/PostCard'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar'
-import { Button } from '@/components/ui/button'
 import { HomePageFilters } from '@/constants/filters'
-import Link from 'next/link'
+import { PostCardProps } from '@/types'
 
 export default function Home () {
-  return (
-    <>
-      <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
-        <h1 className="h1-bold text-dark100_light900">All Questions</h1>
+  const post: PostCardProps = {
+    _id: 'dummy',
+    title: 'Testing the dummy post data',
+    user: {
+      name: 'qavi',
+      avatar: '/assets/icons/avatar.svg'
+    },
+    date: new Date().toUTCString(),
+    tags: [
+      {
+        _id: '1',
+        name: 'JavaScript',
+        totalQuestions: 20152
+      },
+      {
+        _id: '2',
+        name: 'Next.js',
+        totalQuestions: 18493
+      },
+      {
+        _id: '3',
+        name: 'React.js',
+        totalQuestions: 16269
+      }
+    ],
+    votes: 1,
+    views: 100,
+    answers: 2
+  }
 
-        <Link href={'/ask-question'} className="flex justify-end">
-          <Button className="primary-gradient min-h-11 px-4 py-3 text-light-900">
-            Ask a Question
-          </Button>
-        </Link>
-      </div>
+  return (
+    <div className="md:px-12">
+      <HomeTopBar />
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
         <LocalSearchBar
@@ -35,6 +58,10 @@ export default function Home () {
       </div>
 
       <HomeFilter filters={HomePageFilters} />
-    </>
+
+      <div className="mt-11">
+        <PostCard {...post} />
+      </div>
+    </div>
   )
 }
