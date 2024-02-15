@@ -55,7 +55,7 @@ const LeftSidebar = () => {
                 alt="login"
                 height={20}
                 width={20}
-                className="lg:hidden"
+                className="invert-colors lg:hidden"
               />
               <span className="primary-text-gradient max-lg:hidden">
                 Log in
@@ -69,7 +69,7 @@ const LeftSidebar = () => {
                 alt="login"
                 height={20}
                 width={20}
-                className="lg:hidden"
+                className="invert-colors lg:hidden"
               />
               <span className="text-dark400_light900 max-lg:hidden">
                 Sign Up
