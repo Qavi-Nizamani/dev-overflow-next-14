@@ -5,7 +5,7 @@ import { Button } from '../ui/button'
 
 const NoResult = () => {
   return (
-    <div className="mx-auto  mt-28 grid max-w-md gap-8">
+    <div className="mx-auto mt-28 grid max-w-md gap-8">
       <div>
         <Image
           src={'/assets/images/light-illustration.png'}
