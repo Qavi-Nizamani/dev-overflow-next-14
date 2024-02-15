@@ -50,18 +50,18 @@ export type BadgeCriteriaType = keyof typeof BADGE_CRITERIA
 type PopularTag = {
   _id: string
   name: string
-  totalQuestions: number
+  totalQuestions?: number
 }
 
-type User = {
+type Author = {
   name: string
   avatar: string
 }
 
-export type PostCardProps = {
+export type QuestionCardProps = {
   _id: string
   title: string
-  user: User
+  author: Author
   tags: PopularTag[]
   date: string
   votes: number

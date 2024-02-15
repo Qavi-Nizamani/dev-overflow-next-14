@@ -2,18 +2,18 @@ import React from 'react'
 import RenderTag from './RenderTag'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PostCardProps } from '@/types'
+import { QuestionCardProps } from '@/types'
 
-const PostCard = ({
+const QuestionCard = ({
   _id,
   title,
-  user,
+  author,
   tags,
   date,
   votes,
   answers,
   views
-}: PostCardProps) => {
+}: QuestionCardProps) => {
   return (
     <div className="background-light900_dark200 px-11 py-9">
       <div>
@@ -32,7 +32,7 @@ const PostCard = ({
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1">
             <Image
-              src={user.avatar}
+              src={author.avatar}
               alt="avatar"
               width={20}
               height={20}
@@ -79,4 +79,4 @@ const PostCard = ({
   )
 }
 
-export default PostCard
+export default QuestionCard
