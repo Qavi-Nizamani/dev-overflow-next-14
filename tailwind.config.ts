@@ -146,15 +146,15 @@ const myPlugin = ({ addUtilities }) => {
     },
 
     '.small-regular': {
-      '@apply text-[12px] font-normal leading-[15.6px]': {}
+      '@apply text-[12px] font-normal leading-none': {}
     },
 
     '.small-medium': {
-      '@apply text-[12px] font-medium leading-[15.6px]': {}
+      '@apply text-[12px] font-medium leading-none': {}
     },
 
     '.small-semibold': {
-      '@apply text-[12px] font-semibold leading-[15.6px]': {}
+      '@apply text-[12px] font-semibold leading-none': {}
     },
 
     '.subtle-medium': {
