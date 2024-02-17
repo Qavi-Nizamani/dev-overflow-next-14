@@ -3,7 +3,14 @@ import Link from 'next/link'
 import React from 'react'
 import { Button } from '../ui/button'
 
-const NoResult = () => {
+interface Props {
+  title: string
+  description: string
+  link: string
+  linkTitle: string
+}
+
+const NoResult = ({ title, description, link, linkTitle }: Props) => {
   return (
     <div className="mx-auto mt-28 grid max-w-md gap-8">
       <div>
@@ -12,28 +19,24 @@ const NoResult = () => {
           width={270}
           height={200}
           alt="Light Illustration"
-          className="mx-auto max-w-md object-contain dark:hidden"
+          className="max-w-md object-contain dark:hidden"
         />
         <Image
           src={'/assets/images/dark-illustration.png'}
           width={270}
           height={200}
           alt="Light Illustration"
-          className="mx-auto hidden max-w-md object-contain dark:block"
+          className="hidden max-w-md object-contain dark:block"
         />
       </div>
 
       <div className="grid gap-3.5 text-center">
-        <h2 className="text-dark400_light900 h2-bold">
-          There’s no question to show
-        </h2>
-        <p className='text-dark300_light700 body-regular'>
-          Be the first to break the silence! 🚀 Ask a Question and kickstart the
-          discussion. our query could be the next big thing others learn from.
-          Get involved! 💡
-        </p>
-        <Link href={'/'}>
-          <Button className="min-h-11 px-4 py-3 text-light-900 primary-gradient">Ask a Question</Button>
+        <h2 className="text-dark200_light900 h2-bold">{title}</h2>
+        <p className="text-dark500_light700 body-regular">{description}</p>
+        <Link href={link}>
+          <Button className="mt-1.5 min-h-11 rounded-lg bg-primary-500 px-4 py-3 text-light-900 paragraph-medium hover:bg-primary-500 dark:bg-primary-500 dark:text-light-900">
+            {linkTitle}
+          </Button>
         </Link>
       </div>
     </div>

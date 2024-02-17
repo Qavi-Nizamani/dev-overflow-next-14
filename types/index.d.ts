@@ -46,25 +46,3 @@ export interface BadgeCounts {
 }
 
 export type BadgeCriteriaType = keyof typeof BADGE_CRITERIA
-
-type PopularTag = {
-  _id: string
-  name: string
-  totalQuestions?: number
-}
-
-type Author = {
-  name: string
-  avatar: string
-}
-
-export type QuestionCardProps = {
-  _id: string
-  title: string
-  author: Author
-  tags: PopularTag[]
-  date: string
-  votes: number
-  answers: number
-  views: number
-}

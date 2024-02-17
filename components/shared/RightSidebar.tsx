@@ -26,16 +26,17 @@ const TopContent = () => {
       title: 'What is an example of 3 numbers that do not make up a vector?'
     }
   ]
+
   return (
     <div>
       <h3 className="text-dark200_light900 h3-bold">Hot Network</h3>
-      <div className="mt-6 grid gap-5">
+      <div className="mt-6 grid gap-7">
         {hotQuestions.map((question) => {
           return (
             <Link
               key={question._id}
               href={'/'}
-              className="flex items-start justify-between gap-6 "
+              className="flex items-start justify-between gap-6 hover:opacity-75"
             >
               <p className="text-dark500_light700 body-medium">
                 {question.title}
@@ -120,7 +121,7 @@ const BottomContent = () => {
 
 const RightSidebar = () => {
   return (
-    <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col gap-16 overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-xl:hidden xl:w-[330px]">
+    <section className="custom-scrollbar sticky left-0 top-0 flex h-screen flex-col gap-16 overflow-y-auto border-r p-6 pt-36 shadow-light-300 background-light900_dark200 light-border dark:shadow-none max-xl:hidden xl:w-[350px]">
       <TopContent />
       <BottomContent />
     </section>
