@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { ControllerRenderProps, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Editor } from '@tinymce/tinymce-react'
 import {
@@ -17,6 +17,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '../ui/button'
 import { questionSchema } from '@/lib/validation'
+import { Badge } from '../ui/badge'
+import Image from 'next/image'
 
 export function QuestionForm () {
   const editorRef = useRef(null)
@@ -38,6 +40,62 @@ export function QuestionForm () {
     console.log(values)
   }
 
+  const handlerInputKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    field: ControllerRenderProps<
+      {
+        title: string
+        explanation: string
+        tags: string[]
+      },
+      'tags'
+    >
+  ) => {
+    if (e.key === 'Enter') {
+      e.preventDefault() // Prevents the default behavior of the 'Enter' key in the input field
+
+      const tagInput = e.target as HTMLInputElement
+      const tagValue = tagInput.value.trim()
+
+      if (tagValue !== '') {
+        if (tagValue.length >= 15) {
+          return form.setError('tags', {
+            type: 'required',
+            message: 'Tag must be less than 15 characters.'
+          })
+        }
+
+        if (!field.value.includes(tagValue)) {
+          form.setValue('tags', [...field.value, tagValue])
+          tagInput.value = ''
+          form.clearErrors('tags')
+        } else {
+          return form.setError('tags', {
+            type: 'required',
+            message: 'Tag value already exist.'
+          })
+        }
+      } else {
+        form.trigger()
+      }
+    }
+  }
+
+  const handleTagRemove = (
+    tag: string,
+    field: ControllerRenderProps<
+      {
+        title: string
+        explanation: string
+        tags: string[]
+      },
+      'tags'
+    >
+  ) => {
+    const filterValues = field.value.filter((value) => value !== tag)
+
+    form.setValue('tags', filterValues)
+  }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-9 space-y-8">
@@ -129,9 +187,32 @@ export function QuestionForm () {
                 <Input
                   placeholder="Add Tags..."
                   className="no-focus min-h-14 border background-light800_dark300 text-dark300_light700 light-border-2 paragraph-regular"
-                  {...field}
+                  // {...field}
+                  onKeyDown={(e) => handlerInputKeyDown(e, field)}
                 />
               </FormControl>
+              {field.value.length > 0 && (
+                <div className="flex-start !mt-3 gap-2.5">
+                  {field.value.map((tag: string) => {
+                    return (
+                      <Badge
+                        key={tag}
+                        className="flex cursor-pointer items-center justify-center gap-2 rounded-md px-4 py-2 uppercase background-light800_dark300 text-light400_light500 subtle-medium"
+                        onClick={() => handleTagRemove(tag, field)}
+                      >
+                        {tag}
+                        <Image
+                          src="/assets/icons/close.svg"
+                          alt="Close icon"
+                          width={12}
+                          height={12}
+                          className="object-contain invert-0 dark:invert"
+                        />
+                      </Badge>
+                    )
+                  })}
+                </div>
+              )}
               <FormDescription className="mt-2.5 text-light-500 body-regular">
                 Add up to 5 tags to describe what your question is about. Start
                 typing to see suggestions.
