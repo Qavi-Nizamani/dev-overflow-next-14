@@ -1,8 +1,10 @@
 'use client'
 
+import React, { useRef } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { Editor } from '@tinymce/tinymce-react'
 import {
   Form,
   FormControl,
@@ -17,6 +19,8 @@ import { Button } from '../ui/button'
 import { questionSchema } from '@/lib/validation'
 
 export function QuestionForm () {
+  const editorRef = useRef(null)
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof questionSchema>>({
     resolver: zodResolver(questionSchema),
@@ -37,7 +41,6 @@ export function QuestionForm () {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-9 space-y-8">
-
         <FormField
           control={form.control}
           name="title"
@@ -70,12 +73,41 @@ export function QuestionForm () {
                 Detailed explanation of your problem{' '}
                 <span className="text-red-500">*</span>
               </FormLabel>
-              {/* <FormControl className="!mt-3.5">
-                <Input
-                  className="no-focus min-h-14 border background-light800_dark300 text-dark300_light700 light-border-2 paragraph-regular"
-                  {...field}
-                />
-              </FormControl> */}
+              <Editor
+                apiKey="y0qh1q1n0jrmesjyx8vusivk9cef9rdepldt1pymfrwfexh7"
+                onInit={(evt, editor) => {
+                  // @ts-ignore
+                  editorRef.current = editor
+                }}
+                initialValue="<p>This is the initial content of the editor.</p>"
+                init={{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    'advlist',
+                    'autolink',
+                    'lists',
+                    'link',
+                    'image',
+                    'charmap',
+                    'preview',
+                    'anchor',
+                    'searchreplace',
+                    'visualblocks',
+                    'fullscreen',
+                    'insertdatetime',
+                    'media',
+                    'codesample'
+                  ],
+                  toolbar:
+                    'undo redo | codesample | casechange blocks | bold italic backcolor | ' +
+                    'alignleft aligncenter alignright alignjustify | ' +
+                    'bullist numlist checklist outdent indent | removeformat',
+                  content_style:
+                    'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                }}
+                {...field}
+              />
               <FormDescription className="mt-2.5 text-light-500 body-regular">
                 Introduce the problem and expand on what you put in the title.
                 Minimum 100 characters.
