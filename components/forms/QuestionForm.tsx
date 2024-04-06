@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ControllerRenderProps, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -21,6 +21,7 @@ import { Badge } from '../ui/badge'
 import Image from 'next/image'
 
 export function QuestionForm () {
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const editorRef = useRef(null)
 
   // 1. Define your form.
@@ -35,9 +36,18 @@ export function QuestionForm () {
 
   // 2. Define a submit handler.
   function onSubmit (values: z.infer<typeof questionSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+    setIsSubmitting(true)
+
+    try {
+      // make an async call to your API -> create a question
+      // contain all form data
+
+      // navigate to home page
+    } catch (error) {
+
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handlerInputKeyDown = (
@@ -225,6 +235,7 @@ export function QuestionForm () {
         <Button
           className="!mt-16 ml-auto flex w-44 text-light-900 primary-gradient"
           type="submit"
+          disabled={isSubmitting}
         >
           Ask a Question
         </Button>
