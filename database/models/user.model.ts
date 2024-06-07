@@ -1,20 +1,67 @@
-import mongoose from 'mongoose'
+import { Document, Schema, model, models } from 'mongoose'
 
-// Create a mongoose question model having title, explanation and tags
-const userSchema = new mongoose.Schema({
-  username: {
+export interface IUser extends Document {
+  clerkId: string
+  name: string
+  username: string
+  email: string
+  password?: string
+  bio?: string
+  picture?: string
+  portfolioWebsite?: string
+  reputation?: number
+  saved: Schema.Types.ObjectId[]
+  joinedAt: Date
+}
+
+const userSchema = new Schema({
+  clerkId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  name: {
     type: String,
     required: true
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
-  avatar: {
+  password: {
     type: String
+  },
+  bio: {
+    type: String
+  },
+  picture: {
+    type: String
+  },
+  portfolioWebsite: {
+    type: String
+  },
+  reputation: {
+    type: Number,
+    default: 0
+  },
+  saved: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Question'
+    }
+  ],
+  joinedAt: {
+    type: Date,
+    default: Date.now
   }
 })
 
-const User = mongoose.model('User', userSchema)
+const User = models.User || model('User', userSchema)
 
 export default User
