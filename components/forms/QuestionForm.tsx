@@ -19,6 +19,7 @@ import { Button } from '../ui/button'
 import { questionSchema } from '@/lib/validation'
 import { Badge } from '../ui/badge'
 import Image from 'next/image'
+import { createQuestion } from '@/lib/actions/question.action'
 
 export function QuestionForm () {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -35,16 +36,16 @@ export function QuestionForm () {
   })
 
   // 2. Define a submit handler.
-  function onSubmit (values: z.infer<typeof questionSchema>) {
+  async function onSubmit (values: z.infer<typeof questionSchema>) {
     setIsSubmitting(true)
 
     try {
       // make an async call to your API -> create a question
       // contain all form data
 
+      await createQuestion(values)
       // navigate to home page
     } catch (error) {
-
     } finally {
       setIsSubmitting(false)
     }
@@ -147,7 +148,9 @@ export function QuestionForm () {
                   // @ts-ignore
                   editorRef.current = editor
                 }}
-                initialValue="<p>This is the initial content of the editor.</p>"
+                onBlur={field.onBlur}
+                onEditorChange={(content) => field.onChange(content)}
+                initialValue=""
                 init={{
                   height: 500,
                   menubar: false,
@@ -174,7 +177,6 @@ export function QuestionForm () {
                   content_style:
                     'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
                 }}
-                {...field}
               />
               <FormDescription className="mt-2.5 text-light-500 body-regular">
                 Introduce the problem and expand on what you put in the title.
