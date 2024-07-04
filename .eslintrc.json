@@ -3,5 +3,13 @@
     "next/core-web-vitals",
     "standard",
     "plugin:tailwindcss/recommended"
-  ]
+  ],
+  "rules": {
+    "quotes": ["warn", "double"],
+    "space-before-function-paren": "off",
+    "semi": "off",
+    "comma-dangle": "off",
+    "multiline-ternary": "off",
+    "camelcase": "warn"
+  }
 }
